@@ -8,18 +8,17 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
+
     var coinManager = CoinManager()
     let mainView = CoinView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view = mainView
-        
+
         mainView.picker.dataSource = self
         mainView.picker.delegate = self
         coinManager.delegate = self
-        
     }
 }
 extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
@@ -33,8 +32,8 @@ extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         return coinManager.currencyArray[row]
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let selectedCurrency = coinManager.currencyArray[row]
-        coinManager.getCoinPrice(for: selectedCurrency)
+        let selected = coinManager.currencyArray[row]
+        coinManager.getCoinPrice(for: selected)
     }
 }
 extension ViewController: CoinManagerDelegate {
